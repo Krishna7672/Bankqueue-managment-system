@@ -88,7 +88,7 @@ export const SimulatedNotificationModal = ({ isOpen, onClose, type = 'sms', toke
                   <strong>Dear Customer {token.customerName},</strong>
                 </p>
                 <p>
-                  Your SBI Grahak Mitra e-Token <strong className="text-[#292075] font-mono text-sm">[{token.tokenNumber}]</strong> for <em>{token.serviceName}</em> has been registered at Branch #00402.
+                  Your SBI Grahak Mitra e-Token <strong className="text-[#292075] font-mono text-sm">[{token.tokenNumber}]</strong> for <em>{token.serviceName}</em> has been registered successfully.
                 </p>
                 <div className="bg-[#E6F8FE] border border-[#00B5EF]/40 rounded-lg p-2.5 text-[11px] text-[#1A1450] space-y-1 font-mono">
                   <div>Counter / काउंटर: <strong>Counter {token.counterNumber}</strong></div>
@@ -129,7 +129,7 @@ export const SimulatedNotificationModal = ({ isOpen, onClose, type = 'sms', toke
 
                 <p>Namaste <strong>{token.customerName}</strong>,</p>
                 <p>
-                  You are in queue for <strong>{token.serviceName}</strong> at SBI Main Branch, Connaught Place (00402).
+                  You are in queue for <strong>{token.serviceName}</strong>.
                 </p>
                 <div className="bg-white rounded-lg p-2.5 border border-emerald-200 text-[11px] space-y-1">
                   <div>🎫 Token: <span className="font-bold font-mono text-emerald-900 text-sm">{token.tokenNumber}</span></div>

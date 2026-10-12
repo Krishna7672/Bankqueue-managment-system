@@ -85,30 +85,28 @@ export const Header = ({ currentTab, setCurrentTab }) => {
     <>
       <header className="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
         {/* Top SBI Official Information Strip */}
-        <div className="bg-[#1A1450] text-white text-[11px] px-4 sm:px-8 py-1.5 flex flex-wrap items-center justify-between gap-2 border-b border-[#292075]">
-          <div className="flex items-center gap-3">
-            <span className="flex items-center gap-1.5 text-[#00B5EF] font-bold">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              SBI Branch #00402 (Connaught Place, New Delhi)
+        <div className="bg-[#1A1450] text-white text-[11px] px-3 sm:px-8 py-1.5 flex items-center justify-between gap-2 border-b border-[#292075] w-full max-w-full overflow-hidden">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0 truncate">
+            <span className="flex items-center gap-1.5 text-emerald-400 font-bold truncate">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+              Queue Portal Active
             </span>
-            <span className="text-slate-500 hidden sm:inline">|</span>
-            <span className="text-slate-300 hidden sm:inline flex items-center gap-1">
+            <span className="text-slate-500 hidden md:inline">|</span>
+            <span className="text-slate-300 hidden md:inline flex items-center gap-1">
               <PhoneCall className="w-3 h-3 text-[#00B5EF]" />
               Toll Free: <strong className="text-white">1800 1234 / 1800 2100</strong>
             </span>
-            <span className="text-slate-500 hidden md:inline">|</span>
-            <span className="text-slate-300 hidden md:inline">
+            <span className="text-slate-500 hidden lg:inline">|</span>
+            <span className="text-slate-300 hidden lg:inline">
               Hours: 10:00 AM - 04:00 PM
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1.5 text-slate-300 font-mono text-[11px]">
-              <Clock className="w-3.5 h-3.5 text-[#00B5EF]" />
+          <div className="flex items-center gap-2 shrink-0">
+            <div className="flex items-center gap-1 text-slate-300 font-mono text-[10px] sm:text-[11px]">
+              <Clock className="w-3 h-3 text-[#00B5EF] shrink-0" />
               <span>
-                {currentTime.toLocaleDateString('en-IN', { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' })}
-                {' • '}
-                {currentTime.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })}
+                {currentTime.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true })}
               </span>
             </div>
 
@@ -118,46 +116,46 @@ export const Header = ({ currentTab, setCurrentTab }) => {
                   resetToDemoData();
                 }
               }}
-              className="flex items-center gap-1 text-slate-300 hover:text-white transition-colors text-[10px] px-2 py-0.5 rounded bg-white/10 hover:bg-white/20"
+              className="flex items-center gap-1 text-slate-300 hover:text-white transition-colors text-[10px] px-1.5 py-0.5 rounded bg-white/10 hover:bg-white/20 shrink-0"
               title="Reset queue state"
             >
               <RotateCcw className="w-2.5 h-2.5" />
-              <span className="hidden md:inline">Reset Demo</span>
+              <span className="hidden sm:inline">Reset</span>
             </button>
           </div>
         </div>
 
         {/* Main Navigation Bar */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-18 gap-4 py-2">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 w-full max-w-full">
+          <div className="flex items-center justify-between min-h-[60px] sm:h-18 gap-2 sm:gap-4 py-2">
             
             {/* SBI Logo and Official Bilingual Title */}
             <div 
               onClick={() => setCurrentTab('customer')}
-              className="flex items-center gap-3 cursor-pointer group select-none"
+              className="flex items-center gap-2 sm:gap-3 cursor-pointer group select-none min-w-0"
             >
               <div className="relative shrink-0">
-                <SbiLogo className="w-11 h-11 drop-shadow-sm group-hover:scale-105 transition-transform" />
+                <SbiLogo className="w-9 h-9 sm:w-11 sm:h-11 drop-shadow-sm group-hover:scale-105 transition-transform" />
               </div>
 
-              <div className="border-l border-slate-200 pl-3">
-                <div className="text-[12px] font-bold text-[#292075] tracking-wide leading-none">
+              <div className="border-l border-slate-200 pl-2 sm:pl-3 min-w-0">
+                <div className="text-[10px] sm:text-[12px] font-bold text-[#292075] tracking-wide leading-none truncate">
                   भारतीय स्टेट बैंक
                 </div>
-                <div className="text-base font-black text-[#1A1450] tracking-tight leading-tight flex items-center gap-2">
-                  <span>STATE BANK OF INDIA</span>
-                  <span className="text-[9px] uppercase font-bold px-1.5 py-0.2 bg-[#E6F8FE] text-[#0083ca] border border-[#00B5EF]/30 rounded">
+                <div className="text-xs sm:text-base font-black text-[#1A1450] tracking-tight leading-tight flex items-center gap-1.5 truncate">
+                  <span className="truncate">STATE BANK OF INDIA</span>
+                  <span className="text-[9px] uppercase font-bold px-1.5 py-0.2 bg-[#E6F8FE] text-[#0083ca] border border-[#00B5EF]/30 rounded hidden md:inline-block shrink-0">
                     Grahak Mitra
                   </span>
                 </div>
-                <p className="text-[10px] text-slate-500 font-medium hidden sm:block">
+                <p className="text-[10px] text-slate-500 font-medium hidden lg:block truncate">
                   Branch e-Token & Queue Management Portal
                 </p>
               </div>
             </div>
 
-            {/* Public Navigation Links (Admin/Staff only visible when authenticated!) */}
-            <nav className="hidden lg:flex items-center gap-1.5 bg-slate-100/90 p-1 rounded-xl border border-slate-200">
+            {/* Public Navigation Links (Desktop) */}
+            <nav className="hidden lg:flex items-center gap-1.5 bg-slate-100/90 p-1 rounded-xl border border-slate-200 shrink-0">
               {currentNavItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = currentTab === item.id;
@@ -165,7 +163,7 @@ export const Header = ({ currentTab, setCurrentTab }) => {
                   <button
                     key={item.id}
                     onClick={() => setCurrentTab(item.id)}
-                    className={`flex items-center gap-2 px-3.5 py-2 text-xs font-bold rounded-lg transition-all ${
+                    className={`flex items-center gap-2 px-3 py-2 text-xs font-bold rounded-lg transition-all ${
                       isActive
                         ? 'bg-[#292075] text-white shadow-sm ring-1 ring-[#00B5EF]/40'
                         : 'text-slate-700 hover:text-[#292075] hover:bg-white/80'
@@ -185,78 +183,77 @@ export const Header = ({ currentTab, setCurrentTab }) => {
               })}
             </nav>
 
-            {/* Right Action Utilities & Auth Control */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            {/* Right Action Utilities & Auth Control (Mobile-Optimized) */}
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
               {/* Audio Toggle */}
               <button
                 onClick={toggleSound}
-                className={`p-2 rounded-lg border text-xs font-medium flex items-center gap-1.5 transition-colors ${
+                className={`p-2 rounded-xl border text-xs font-medium flex items-center justify-center transition-colors ${
                   soundActive 
                     ? 'border-[#00B5EF]/40 bg-[#E6F8FE] text-[#0083ca] hover:bg-sky-100'
                     : 'border-slate-200 bg-slate-100 text-slate-500 hover:bg-slate-200'
                 }`}
-                title={soundActive ? 'Loudspeaker Voice Announcements ON' : 'Loudspeaker Announcements MUTED'}
+                title={soundActive ? 'Loudspeaker Announcements ON' : 'Loudspeaker Announcements MUTED'}
               >
                 {soundActive ? <Volume2 className="w-4 h-4 text-[#0083ca]" /> : <VolumeX className="w-4 h-4" />}
-                <span className="hidden sm:inline text-xs font-bold">{soundActive ? 'Sound On' : 'Muted'}</span>
+                <span className="hidden md:inline text-xs font-bold ml-1">{soundActive ? 'Sound On' : 'Muted'}</span>
               </button>
 
               {/* Active User Token Ticket Pill */}
               {userToken && (
                 <button
                   onClick={() => setCurrentTab('token-detail')}
-                  className="flex items-center gap-2 bg-gradient-to-r from-[#292075] to-[#1B1464] text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm hover:shadow transition-all border border-[#00B5EF]/30"
+                  className="flex items-center gap-1.5 bg-gradient-to-r from-[#292075] to-[#1B1464] text-white px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-bold shadow-xs hover:shadow transition-all border border-[#00B5EF]/30"
                   title="View your current SBI e-Token pass"
                 >
-                  <Ticket className="w-4 h-4 text-[#00B5EF]" />
-                  <span className="font-mono text-sm tracking-wide">{userToken.tokenNumber}</span>
-                  <span className={`text-[9px] px-1.5 py-0.5 rounded font-black uppercase ${
+                  <Ticket className="w-3.5 h-3.5 text-[#00B5EF]" />
+                  <span className="font-mono text-xs sm:text-sm tracking-wide">{userToken.tokenNumber}</span>
+                  <span className={`text-[9px] px-1.5 py-0.2 rounded font-black uppercase hidden sm:inline-block ${
                     userToken.status === 'serving' ? 'bg-emerald-400 text-emerald-950 animate-pulse' :
                     userToken.status === 'completed' ? 'bg-slate-200 text-slate-800' : 'bg-white/20 text-white'
                   }`}>
                     {userToken.status}
                   </span>
-                  <ChevronRight className="w-3.5 h-3.5 opacity-70" />
                 </button>
               )}
 
               {/* SEPARATE AUTHENTICATION GATEWAY: Staff / Admin Login Button */}
               {authRole ? (
                 /* Authenticated State Banner & Logout */
-                <div className="flex items-center gap-2 pl-2 border-l border-slate-200">
-                  <div className="text-right hidden sm:block">
-                    <span className="text-[10px] uppercase font-bold text-[#0083ca] block">
-                      {authRole === 'admin' ? 'Branch Manager' : 'Counter Officer'}
+                <div className="flex items-center gap-1.5 sm:gap-2 pl-1 sm:pl-2 border-l border-slate-200">
+                  <div className="text-right hidden md:block">
+                    <span className="text-[9px] uppercase font-bold text-[#0083ca] block leading-tight">
+                      {authRole === 'admin' ? 'Manager' : 'Officer'}
                     </span>
-                    <span className="text-xs font-bold text-[#1A1450] block truncate max-w-[120px]">
-                      {currentAuthUser?.name || 'Administrator'}
+                    <span className="text-xs font-bold text-[#1A1450] block truncate max-w-[100px]">
+                      {currentAuthUser?.name ? currentAuthUser.name.split(' ')[0] : 'Admin'}
                     </span>
                   </div>
                   <button
                     onClick={handleLogout}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-bold border border-rose-200 transition-colors"
+                    className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-bold border border-rose-200 transition-colors"
                     title="Log out from staff workstation"
                   >
                     <LogOut className="w-3.5 h-3.5" />
-                    <span>Log Out</span>
+                    <span className="hidden sm:inline">Log Out</span>
                   </button>
                 </div>
               ) : (
                 /* Public Customer State -> Official Login Gateway */
                 <button
                   onClick={() => setShowLoginModal(true)}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#292075] hover:bg-[#1A1450] text-white text-xs font-bold shadow-xs border border-[#00B5EF]/30 transition-all hover:ring-2 hover:ring-[#00B5EF]/40"
+                  className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl bg-[#292075] hover:bg-[#1A1450] text-white text-xs font-bold shadow-xs border border-[#00B5EF]/30 transition-all active:scale-95"
                   title="Official SBI Staff & Admin Login"
                 >
                   <Lock className="w-3.5 h-3.5 text-[#00B5EF]" />
-                  <span>Staff Login</span>
+                  <span className="text-xs">Staff Login</span>
                 </button>
               )}
             </div>
           </div>
 
           {/* Mobile Navigation Bar */}
-          <div className="lg:hidden flex items-center justify-around py-2 border-t border-slate-100 overflow-x-auto gap-1">
+          <div className="lg:hidden flex items-center justify-around py-2 border-t border-slate-100 overflow-x-auto gap-1 w-full max-w-full scrollbar-none">
             {currentNavItems.map((item) => {
               const Icon = item.icon;
               const isActive = currentTab === item.id;
@@ -264,8 +261,8 @@ export const Header = ({ currentTab, setCurrentTab }) => {
                 <button
                   key={item.id}
                   onClick={() => setCurrentTab(item.id)}
-                  className={`flex flex-col items-center py-1 px-2 text-[11px] font-bold rounded-lg whitespace-nowrap ${
-                    isActive ? 'text-[#292075] font-extrabold' : 'text-slate-600'
+                  className={`flex flex-col items-center py-1 px-2.5 text-[11px] font-bold rounded-lg whitespace-nowrap shrink-0 transition-colors ${
+                    isActive ? 'text-[#292075] font-black' : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   <Icon className={`w-4 h-4 mb-0.5 ${isActive ? 'text-[#00B5EF]' : 'text-slate-400'}`} />

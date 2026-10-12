@@ -87,7 +87,6 @@ export const TokenConfirmation = ({
     const slipText = `
 =============================================
          भारतीय स्टेट बैंक / STATE BANK OF INDIA
-        SBI Main Branch, Connaught Place (00402)
          GRAHAK MITRA e-TOKEN / पर्ची
 =============================================
 TOKEN NO / टोकन:   ${token.tokenNumber}
@@ -191,7 +190,7 @@ ESTIMATED WAIT:      ~${token.estimatedMinutes} Minutes
                 STATE BANK OF INDIA
               </h2>
               <p className="text-[10px] text-slate-300">
-                SBI Branch #00402 (Connaught Place) • Grahak Mitra Token Pass
+                Grahak Mitra Queue Pass
               </p>
             </div>
           </div>

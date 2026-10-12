@@ -96,7 +96,7 @@ export const LiveQueueDisplay = () => {
               </span>
             </div>
             <p className={`text-xs ${isFullscreen ? 'text-slate-300' : 'text-slate-500'}`}>
-              Branch #00402 • Real-time counter status and electronic token call announcements
+              Real-time counter status and electronic token call announcements
             </p>
           </div>
         </div>

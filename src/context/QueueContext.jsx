@@ -24,7 +24,7 @@ const STORAGE_KEYS = {
 const DEFAULT_SETTINGS = {
   bankName: 'State Bank of India',
   bankNameHindi: 'भारतीय स्टेट बैंक',
-  branchName: 'SBI Main Branch, Connaught Place (00402)',
+  branchName: '',
   priorityElderly: true,
   priorityPwD: true,
   audioAnnouncements: true,

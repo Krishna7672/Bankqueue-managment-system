@@ -80,7 +80,7 @@ export const AdminDashboard = ({ onNavigateSubTab }) => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `SBI_Branch_00402_Queue_Report_${Date.now()}.csv`;
+    link.download = `SBI_Queue_Report_${Date.now()}.csv`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -93,14 +93,9 @@ export const AdminDashboard = ({ onNavigateSubTab }) => {
       {/* Top Welcome & Filter Row */}
       <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2">
-            <h1 className="text-lg sm:text-xl font-bold text-[#1A1450]">
-              SBI Branch Operations & Queue Intelligence (प्रबंधन पोर्टल)
-            </h1>
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#E6F8FE] text-[#0083ca] border border-[#00B5EF]/30">
-              SBI Branch #00402
-            </span>
-          </div>
+          <h1 className="text-lg sm:text-xl font-bold text-[#1A1450]">
+            SBI Operations & Queue Intelligence (प्रबंधन पोर्टल)
+          </h1>
           <p className="text-xs text-slate-500 mt-0.5">
             Real-time branch throughput, counter allocation, and audit monitoring
           </p>

@@ -117,7 +117,7 @@ export const ServiceSelector = ({ onSelectService, onGoToSupport }) => {
       {/* Filter and Search Bar */}
       <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
         {/* Category Pills with Item Count Badges */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none w-full max-w-full">
           {categories.map((cat) => {
             const isSelected = selectedCategory === cat;
             const count = getCategoryCount(cat);
@@ -125,7 +125,7 @@ export const ServiceSelector = ({ onSelectService, onGoToSupport }) => {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 ${
+                className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
                   isSelected
                     ? 'bg-[#292075] text-white shadow-xs ring-1 ring-[#00B5EF]/40'
                     : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 hover:text-[#292075]'
@@ -143,7 +143,7 @@ export const ServiceSelector = ({ onSelectService, onGoToSupport }) => {
         </div>
 
         {/* Search Input */}
-        <div className="relative min-w-[260px]">
+        <div className="relative w-full md:w-auto md:min-w-[260px]">
           <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"

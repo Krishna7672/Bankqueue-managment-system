@@ -103,42 +103,42 @@ export const CustomerDetailsForm = ({ selectedService, onBack, onTokenGenerated 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       {/* Step Navigation Bar */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-2 flex-wrap">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-[#292075] bg-white px-3 py-1.5 rounded-xl border border-slate-200 transition-colors shadow-2xs active:scale-95"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-[#292075] bg-white px-2.5 sm:px-3 py-1.5 rounded-xl border border-slate-200 transition-colors shadow-2xs active:scale-95 shrink-0"
           title="Return to the banking service selection grid"
         >
           <ArrowLeft className="w-4 h-4 text-slate-500" />
-          <span>Back to All Services (वापस)</span>
+          <span>Back <span className="hidden sm:inline">to All Services</span> (वापस)</span>
         </button>
 
-        <span className="text-xs font-bold text-[#0083ca] bg-[#E6F8FE] border border-[#00B5EF]/30 px-3 py-1 rounded-full">
-          Step 2 of 3: Customer Details (ग्राहक विवरण)
+        <span className="text-xs font-bold text-[#0083ca] bg-[#E6F8FE] border border-[#00B5EF]/30 px-2.5 sm:px-3 py-1 rounded-full shrink-0">
+          Step 2 of 3<span className="hidden sm:inline">: Customer Details (ग्राहक विवरण)</span>
         </span>
       </div>
 
       {/* Selected Service Card */}
-      <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-xs flex items-center justify-between gap-4">
-        <div className="flex items-center gap-3.5">
-          <div className="w-12 h-12 rounded-2xl bg-[#E6F8FE] text-[#0083ca] border border-[#00B5EF]/30 flex items-center justify-center shrink-0">
-            <ServiceIcon name={selectedService.icon} className="w-6 h-6" />
+      <div className="bg-white border border-slate-200 rounded-3xl p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+        <div className="flex items-center gap-3.5 min-w-0">
+          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#E6F8FE] text-[#0083ca] border border-[#00B5EF]/30 flex items-center justify-center shrink-0">
+            <ServiceIcon name={selectedService.icon} className="w-5 h-5 sm:w-6 sm:h-6" />
           </div>
-          <div>
+          <div className="min-w-0">
             <div className="flex items-center gap-2">
               <span className="text-[10px] uppercase font-bold text-slate-400">Selected Service:</span>
               <span className="text-[10px] font-mono font-bold px-1.5 py-0.2 bg-slate-100 rounded text-slate-700">
                 Prefix {selectedService.prefix}
               </span>
             </div>
-            <h3 className="text-base font-bold text-[#1A1450]">{selectedService.name}</h3>
-            <p className="text-xs text-slate-500">{selectedService.description}</p>
+            <h3 className="text-sm sm:text-base font-bold text-[#1A1450] truncate">{selectedService.name}</h3>
+            <p className="text-xs text-slate-500 truncate">{selectedService.description}</p>
           </div>
         </div>
 
         <button
           onClick={onBack}
-          className="text-xs font-bold text-[#0083ca] hover:text-[#292075] bg-slate-50 hover:bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200 transition-colors shrink-0"
+          className="text-xs font-bold text-[#0083ca] hover:text-[#292075] bg-slate-50 hover:bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200 transition-colors self-end sm:self-auto shrink-0"
         >
           Change Service
         </button>

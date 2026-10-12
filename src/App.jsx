@@ -28,13 +28,13 @@ const MainContent = () => {
   const [modalType, setModalType] = useState('sms');
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800 overflow-x-hidden w-full max-w-full">
       
       {/* Primary Header */}
       <Header currentTab={currentTab} setCurrentTab={setCurrentTab} />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-5 sm:py-8 overflow-x-hidden">
         {currentTab === 'customer' && (
           <CustomerPortal
             onViewLiveQueue={() => setCurrentTab('display')}
@@ -150,9 +150,6 @@ const MainContent = () => {
               <p className="text-slate-500 leading-relaxed">
                 The banker to every Indian. Official Branch e-Token & Grahak Mitra Queue Management System.
               </p>
-              <span className="text-[11px] text-slate-500 block font-mono">
-                Branch Code: SBI-DELHI-00402
-              </span>
             </div>
 
             {/* Col 2: Quick Jump */}

@@ -178,7 +178,7 @@ export const StaffLoginModal = ({ isOpen, onClose, onSuccess }) => {
                 <input
                   type="text"
                   readOnly
-                  value="branch.manager.00402@sbi.co.in"
+                  value="branch.manager@sbi.co.in"
                   className="w-full text-xs p-2.5 bg-slate-100 text-slate-600 border border-slate-200 rounded-xl font-mono"
                 />
               </div>

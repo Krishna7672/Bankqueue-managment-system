@@ -50,7 +50,7 @@ The operational flow mirrors the multi-counter branch architecture of a high-foo
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
 │             STATE BANK OF INDIA BRANCH QUEUE ECOSYSTEM                 │
-│              SBI Main Branch, Connaught Place (Code: 00402)            │
+│                  SBI Smart Branch Queue System                         │
 └──────────────────────────────────┬─────────────────────────────────────┘
                                    │
          ┌─────────────────────────┼─────────────────────────┐

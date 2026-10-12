@@ -42,16 +42,16 @@ export const CustomerSupportQueue = ({ onBack, onTokenGenerated }) => {
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Top Navigation */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-2 flex-wrap">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-navy-950 transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-[#292075] transition-colors shrink-0"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Back to All Banking Services</span>
+          <span>Back <span className="hidden sm:inline">to All Banking Services</span> (वापस)</span>
         </button>
 
-        <span className="text-xs font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full flex items-center gap-1.5">
+        <span className="text-xs font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full flex items-center gap-1.5 shrink-0">
           <LifeBuoy className="w-3.5 h-3.5" />
           <span>Priority Redressal Desk</span>
         </span>
