@@ -8,6 +8,7 @@ import { StaffDashboard } from './components/Staff/StaffDashboard';
 import { AdminPortal } from './components/Admin/AdminPortal';
 import { TokenConfirmation } from './components/Customer/TokenConfirmation';
 import { SimulatedNotificationModal } from './components/Customer/SimulatedNotificationModal';
+import { GenerateTokenModal } from './components/Customer/GenerateTokenModal';
 import { 
   Building2, 
   ShieldCheck, 
@@ -25,15 +26,24 @@ import {
 const MainContent = () => {
   const [currentTab, setCurrentTab] = useState('customer');
   const [customerResetTrigger, setCustomerResetTrigger] = useState(0);
+  const [showGenerateModal, setShowGenerateModal] = useState(false);
   const { userToken, setUserTokenId, authRole } = useQueue();
 
   const [showNotificationModal, setShowNotificationModal] = useState(false);
   const [modalType, setModalType] = useState('sms');
 
+  const handleOpenGenerateModal = () => {
+    setShowGenerateModal(true);
+  };
+
+  const handleModalTokenGenerated = (newToken) => {
+    setUserTokenId(newToken.id);
+    setCurrentTab('token-detail');
+    setShowGenerateModal(false);
+  };
+
   const handleGenerateToken = () => {
-    setCurrentTab('customer');
-    setCustomerResetTrigger(prev => prev + 1);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setShowGenerateModal(true);
   };
 
   return (
@@ -43,7 +53,7 @@ const MainContent = () => {
       <Header 
         currentTab={currentTab} 
         setCurrentTab={setCurrentTab} 
-        onGenerateToken={handleGenerateToken}
+        onGenerateToken={handleOpenGenerateModal}
       />
 
       {/* Main Container */}
@@ -141,6 +151,13 @@ const MainContent = () => {
         onClose={() => setShowNotificationModal(false)}
         type={modalType}
         token={userToken}
+      />
+
+      {/* Global Instant e-Token Generator Modal */}
+      <GenerateTokenModal
+        isOpen={showGenerateModal}
+        onClose={() => setShowGenerateModal(false)}
+        onTokenGenerated={handleModalTokenGenerated}
       />
 
       {/* Banking Footer with SBI Branding */}

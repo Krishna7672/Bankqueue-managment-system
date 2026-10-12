@@ -82,11 +82,7 @@ export const Header = ({ currentTab, setCurrentTab, onGenerateToken }) => {
   ];
 
   const handleTabClick = (tabId) => {
-    if (tabId === 'customer' && onGenerateToken) {
-      onGenerateToken();
-    } else {
-      setCurrentTab(tabId);
-    }
+    setCurrentTab(tabId);
   };
 
   return (
