@@ -16,13 +16,14 @@ import {
   Building2,
   Filter,
   RotateCcw,
-  RefreshCw
+  RefreshCw,
+  Ticket
 } from 'lucide-react';
 import { useQueue } from '../../context/QueueContext';
 import { soundService } from '../../services/soundAndSpeech';
 import { SbiLogo } from '../SbiLogo';
 
-export const LiveQueueDisplay = () => {
+export const LiveQueueDisplay = ({ onGenerateToken }) => {
   const { tokens, counters, officers, settings, setSettings } = useQueue();
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [selectedCounterFilter, setSelectedCounterFilter] = useState('all');
@@ -103,7 +104,18 @@ export const LiveQueueDisplay = () => {
 
         {/* Display Controls with Descriptive Button Titles */}
         <div className="flex items-center gap-2 flex-wrap">
-          
+          {/* Quick Get Token Button */}
+          {onGenerateToken && (
+            <button
+              onClick={onGenerateToken}
+              className="px-3.5 py-2 rounded-xl text-xs font-bold border border-[#00B5EF]/60 bg-gradient-to-r from-[#0083ca] to-[#00B5EF] hover:from-[#0072b2] hover:to-[#0083ca] text-white flex items-center gap-1.5 transition-all active:scale-95 shadow-xs"
+              title="Get a new SBI queue e-token (नया टोकन प्राप्त करें)"
+            >
+              <Ticket className="w-3.5 h-3.5 text-white" />
+              <span>Get e-Token</span>
+            </button>
+          )}
+
           {/* Refresh / Sync Button */}
           <button
             onClick={handleManualRefresh}

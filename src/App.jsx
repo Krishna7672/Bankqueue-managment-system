@@ -17,26 +17,40 @@ import {
   MapPin, 
   LifeBuoy,
   Tv,
-  Ticket
+  Ticket,
+  Lock,
+  PlusCircle
 } from 'lucide-react';
 
 const MainContent = () => {
   const [currentTab, setCurrentTab] = useState('customer');
+  const [customerResetTrigger, setCustomerResetTrigger] = useState(0);
   const { userToken, setUserTokenId, authRole } = useQueue();
 
   const [showNotificationModal, setShowNotificationModal] = useState(false);
   const [modalType, setModalType] = useState('sms');
 
+  const handleGenerateToken = () => {
+    setCurrentTab('customer');
+    setCustomerResetTrigger(prev => prev + 1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800 overflow-x-hidden w-full max-w-full">
       
       {/* Primary Header */}
-      <Header currentTab={currentTab} setCurrentTab={setCurrentTab} />
+      <Header 
+        currentTab={currentTab} 
+        setCurrentTab={setCurrentTab} 
+        onGenerateToken={handleGenerateToken}
+      />
 
       {/* Main Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-5 sm:py-8 overflow-x-hidden">
         {currentTab === 'customer' && (
           <CustomerPortal
+            resetTrigger={customerResetTrigger}
             onViewLiveQueue={() => setCurrentTab('display')}
             onGoToSupport={() => setCurrentTab('support')}
           />
@@ -53,7 +67,7 @@ const MainContent = () => {
         )}
 
         {currentTab === 'display' && (
-          <LiveQueueDisplay />
+          <LiveQueueDisplay onGenerateToken={handleGenerateToken} />
         )}
 
         {currentTab === 'staff' && (
@@ -108,7 +122,7 @@ const MainContent = () => {
           <TokenConfirmation
             token={userToken}
             onViewLiveQueue={() => setCurrentTab('display')}
-            onNewToken={() => setCurrentTab('customer')}
+            onNewToken={handleGenerateToken}
             onOpenSMSModal={() => {
               setModalType('sms');
               setShowNotificationModal(true);

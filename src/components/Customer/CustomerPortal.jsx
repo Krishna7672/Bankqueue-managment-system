@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQueue } from '../../context/QueueContext';
 import { ServiceSelector } from './ServiceSelector';
 import { CustomerDetailsForm } from './CustomerDetailsForm';
@@ -6,15 +6,23 @@ import { TokenConfirmation } from './TokenConfirmation';
 import { CustomerSupportQueue } from './CustomerSupportQueue';
 import { SimulatedNotificationModal } from './SimulatedNotificationModal';
 
-export const CustomerPortal = ({ currentView, onViewLiveQueue, onGoToSupport }) => {
+export const CustomerPortal = ({ currentView, onViewLiveQueue, onGoToSupport, resetTrigger }) => {
   const { userToken, setUserTokenId } = useQueue();
 
-  const [step, setStep] = useState(userToken ? 'confirmation' : 'select-service');
+  const [step, setStep] = useState('select-service');
   const [selectedService, setSelectedService] = useState(null);
   
   // Notification modal state
   const [modalType, setModalType] = useState('sms');
   const [showNotificationModal, setShowNotificationModal] = useState(false);
+
+  // When resetTrigger fires (e.g. user clicked "Generate Token" at top), return to service selection
+  useEffect(() => {
+    if (resetTrigger) {
+      setSelectedService(null);
+      setStep('select-service');
+    }
+  }, [resetTrigger]);
 
   const handleSelectService = (service) => {
     setSelectedService(service);
@@ -35,6 +43,8 @@ export const CustomerPortal = ({ currentView, onViewLiveQueue, onGoToSupport }) 
     <div className="space-y-6">
       {step === 'select-service' && (
         <ServiceSelector
+          userToken={userToken}
+          onViewToken={() => setStep('confirmation')}
           onSelectService={handleSelectService}
           onGoToSupport={onGoToSupport}
         />

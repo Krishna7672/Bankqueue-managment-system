@@ -21,7 +21,7 @@ import { soundService } from '../services/soundAndSpeech';
 import { SbiLogo } from './SbiLogo';
 import { StaffLoginModal } from './Auth/StaffLoginModal';
 
-export const Header = ({ currentTab, setCurrentTab }) => {
+export const Header = ({ currentTab, setCurrentTab, onGenerateToken }) => {
   const { 
     userToken, 
     settings, 
@@ -81,6 +81,14 @@ export const Header = ({ currentTab, setCurrentTab }) => {
     ...(authRole === 'admin' ? adminNavItems : [])
   ];
 
+  const handleTabClick = (tabId) => {
+    if (tabId === 'customer' && onGenerateToken) {
+      onGenerateToken();
+    } else {
+      setCurrentTab(tabId);
+    }
+  };
+
   return (
     <>
       <header className="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
@@ -99,6 +107,9 @@ export const Header = ({ currentTab, setCurrentTab }) => {
             <span className="text-slate-500 hidden lg:inline">|</span>
             <span className="text-slate-300 hidden lg:inline">
               Hours: 10:00 AM - 04:00 PM
+            </span>
+            <span className="text-[#00B5EF] font-bold hidden xl:inline">
+              • ⚡ Quick e-Token available online
             </span>
           </div>
 
@@ -131,7 +142,7 @@ export const Header = ({ currentTab, setCurrentTab }) => {
             
             {/* SBI Logo and Official Bilingual Title */}
             <div 
-              onClick={() => setCurrentTab('customer')}
+              onClick={() => handleTabClick('customer')}
               className="flex items-center gap-2 sm:gap-3 cursor-pointer group select-none min-w-0"
             >
               <div className="relative shrink-0">
@@ -162,7 +173,7 @@ export const Header = ({ currentTab, setCurrentTab }) => {
                 return (
                   <button
                     key={item.id}
-                    onClick={() => setCurrentTab(item.id)}
+                    onClick={() => handleTabClick(item.id)}
                     className={`flex items-center gap-2 px-3 py-2 text-xs font-bold rounded-lg transition-all ${
                       isActive
                         ? 'bg-[#292075] text-white shadow-sm ring-1 ring-[#00B5EF]/40'
@@ -184,7 +195,34 @@ export const Header = ({ currentTab, setCurrentTab }) => {
             </nav>
 
             {/* Right Action Utilities & Auth Control (Mobile-Optimized) */}
-            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+              
+              {/* PRIMARY PROMINENT ACTION: Generate Token Button */}
+              <button
+                onClick={() => {
+                  if (onGenerateToken) {
+                    onGenerateToken();
+                  } else {
+                    setCurrentTab('customer');
+                  }
+                }}
+                id="top-generate-token-btn"
+                className="relative inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r from-[#0083ca] via-[#0092dd] to-[#00B5EF] hover:from-[#0072b2] hover:to-[#0083ca] text-white font-black rounded-xl shadow-md shadow-[#0083ca]/30 hover:shadow-lg hover:shadow-[#0083ca]/40 transition-all active:scale-95 border border-[#00B5EF]/60 text-xs sm:text-sm group shrink-0 ring-2 ring-sky-300/40 cursor-pointer"
+                title="Generate a new SBI e-Token (नया टोकन बनाएं)"
+              >
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-80"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                </span>
+                <Ticket className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white group-hover:rotate-12 transition-transform shrink-0" />
+                <span className="tracking-tight whitespace-nowrap">
+                  <span className="hidden sm:inline">Generate </span>Token
+                </span>
+                <span className="hidden xl:inline text-[9px] uppercase font-black px-1.5 py-0.5 rounded bg-white/20 text-white tracking-wider">
+                  Instant
+                </span>
+              </button>
+
               {/* Audio Toggle */}
               <button
                 onClick={toggleSound}
@@ -257,15 +295,22 @@ export const Header = ({ currentTab, setCurrentTab }) => {
             {currentNavItems.map((item) => {
               const Icon = item.icon;
               const isActive = currentTab === item.id;
+              const isGenerateTab = item.id === 'customer';
               return (
                 <button
                   key={item.id}
-                  onClick={() => setCurrentTab(item.id)}
+                  onClick={() => handleTabClick(item.id)}
                   className={`flex flex-col items-center py-1 px-2.5 text-[11px] font-bold rounded-lg whitespace-nowrap shrink-0 transition-colors ${
-                    isActive ? 'text-[#292075] font-black' : 'text-slate-600 hover:text-slate-900'
+                    isActive 
+                      ? 'text-[#292075] font-black' 
+                      : isGenerateTab
+                        ? 'text-[#0083ca] font-extrabold'
+                        : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 mb-0.5 ${isActive ? 'text-[#00B5EF]' : 'text-slate-400'}`} />
+                  <Icon className={`w-4 h-4 mb-0.5 ${
+                    isActive ? 'text-[#00B5EF]' : isGenerateTab ? 'text-[#0083ca]' : 'text-slate-400'
+                  }`} />
                   <span>{item.label}</span>
                 </button>
               );

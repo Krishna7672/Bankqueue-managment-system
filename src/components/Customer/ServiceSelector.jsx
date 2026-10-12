@@ -10,13 +10,14 @@ import {
   ShieldCheck,
   HeartHandshake,
   RotateCcw,
-  Tag
+  Tag,
+  Ticket
 } from 'lucide-react';
 import { useQueue } from '../../context/QueueContext';
 import { ServiceIcon } from '../ServiceIcon';
 import { SbiLogo } from '../SbiLogo';
 
-export const ServiceSelector = ({ onSelectService, onGoToSupport }) => {
+export const ServiceSelector = ({ onSelectService, onGoToSupport, userToken, onViewToken }) => {
   const { services, tokens, counters } = useQueue();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
@@ -52,7 +53,43 @@ export const ServiceSelector = ({ onSelectService, onGoToSupport }) => {
   };
 
   return (
-    <div className="space-y-6">
+    <div id="service-selector-section" className="space-y-6">
+      {/* Active Token Notice Pill (if user has an active token in progress) */}
+      {userToken && (
+        <div className="bg-gradient-to-r from-[#E6F8FE] via-sky-50 to-indigo-50/60 border border-[#00B5EF]/40 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-xs">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-10 h-10 rounded-xl bg-[#292075] text-[#00B5EF] flex items-center justify-center shrink-0 shadow-xs">
+              <Ticket className="w-5 h-5 text-[#00B5EF]" />
+            </div>
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-xs font-black text-[#1A1450]">Your Current Active Token:</span>
+                <span className="font-mono text-xs font-black px-2 py-0.5 rounded-md bg-[#292075] text-white">
+                  {userToken.tokenNumber}
+                </span>
+                <span className={`text-[9px] font-bold px-1.5 py-0.2 rounded uppercase ${
+                  userToken.status === 'serving' ? 'bg-emerald-100 text-emerald-800 animate-pulse' :
+                  userToken.status === 'completed' ? 'bg-slate-200 text-slate-800' :
+                  'bg-blue-100 text-[#0083ca]'
+                }`}>
+                  {userToken.status}
+                </span>
+              </div>
+              <p className="text-[11px] text-slate-600 mt-0.5 truncate">
+                Counter {userToken.counterNumber} • {userToken.serviceName} (~{userToken.estimatedMinutes}m wait)
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={onViewToken}
+            className="px-3.5 py-1.5 bg-[#292075] hover:bg-[#1A1450] text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 shrink-0 self-end sm:self-auto active:scale-95"
+          >
+            <span>View Token Pass</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
+
       {/* Banner / Step 1 Header with SBI Royal Blue */}
       <div className="bg-gradient-to-r from-[#292075] via-[#1B1464] to-[#140F3E] text-white rounded-3xl p-6 sm:p-8 shadow-md relative overflow-hidden border border-[#00B5EF]/30">
         <div className="absolute right-0 top-0 translate-x-12 -translate-y-8 w-64 h-64 bg-[#00B5EF]/15 rounded-full blur-2xl pointer-events-none"></div>
