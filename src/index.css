@@ -80,3 +80,42 @@
   max-width: 100%;
   width: 100%;
 }
+
+/* 3D Debit Card Flip & Animation Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+@keyframes cardShimmer {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+  }
+  40%, 100% {
+    transform: translateX(250%) skewX(-25deg);
+  }
+}
+
+.animate-card-shimmer {
+  animation: cardShimmer 5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.embossed-card-text {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7), 0 -1px 1px rgba(255, 255, 255, 0.25);
+}
+
+.embossed-gold-text {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 -1px 0 rgba(255, 255, 255, 0.4);
+}
